@@ -4,15 +4,14 @@ An interactive web application that displays alphanumeric characters as they are
 
 ## Getting Started
 
-First, enable JavaScript and Sass compilation on changes:
+Launch the development server using Docker Compose:
 
 ```bash
-$ docker-compose run --rm site
+$ docker-compose up
 ```
 
-Afterwards, use something like Python's `SimpleHTTPServer` to serve the compiled changes:
+Or use `yarn`:
 
 ```bash
-$ python -mSimpleHTTPServer
-Serving HTTP on 0.0.0.0 port 8000 ...
+$ yarn start
 ```
