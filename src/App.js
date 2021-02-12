@@ -1,9 +1,6 @@
-// @flow
-
 import React, { Component } from 'react';
 import { Container, Hero, Title } from 'reactbulma'
 import keydown, { ALL_PRINTABLE_KEYS } from 'react-keydown'
-import { CSSTransitionGroup } from 'react-transition-group'
 import './App.css';
 
 type Props = {
@@ -24,7 +21,7 @@ const App = keydown(ALL_PRINTABLE_KEYS)(class App extends Component<Props, State
     this.state = { char: '?' };
   }
 
-  componentWillReceiveProps({ keydown }) {
+  UNSAFE_componentWillReceiveProps({ keydown }) {
     if (keydown.event) {
       const k = keydown.event.which;
 
@@ -40,14 +37,9 @@ const App = keydown(ALL_PRINTABLE_KEYS)(class App extends Component<Props, State
         <Hero.Body>
           <Container hasTextCentered={true}>
             <Title>
-              <CSSTransitionGroup
-                transitionName="fade"
-                transitionEnterTimeout={300}
-                transitionLeave={false}>
-                <div key={this.state.char}>
-                  {this.state.char}
-                </div>
-              </CSSTransitionGroup>
+              <div key={this.state.char}>
+                {this.state.char}
+              </div>
             </Title>
           </Container>
         </Hero.Body>

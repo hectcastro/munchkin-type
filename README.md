@@ -10,8 +10,8 @@ Launch the development server using Docker Compose:
 $ docker-compose up
 ```
 
-Or use `yarn`:
+Or use `npm`:
 
 ```bash
-$ yarn start
+$ npm run start
 ```
