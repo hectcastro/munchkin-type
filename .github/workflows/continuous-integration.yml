@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+env:
+  FORCE_COLOR: 1
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Download Earthly
+        run: |
+          sudo wget https://github.com/earthly/earthly/releases/download/v0.5.18/earthly-linux-amd64 -O /usr/local/bin/earthly
+          sudo chmod +x /usr/local/bin/earthly
+
+      - name: Install dependencies and build
+        run: |
+          earthly +ci
