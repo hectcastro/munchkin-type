@@ -1,25 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "bulma/css/bulma.min.css";
+import { useState } from "react";
+import { Container, Heading, Hero } from "react-bulma-components";
+import { useHotkeys } from "react-hotkeys-hook";
+import "./App.css";
 
 function App() {
+  const [state, setState] = useState("?");
+  useHotkeys("*", (event: KeyboardEvent) =>
+    setState((prevState) => {
+      const newState = event.key;
+      return newState.match(/^[a-z0-9]$/i) ? newState : prevState;
+    })
+  );
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Hero color={"dark"} size={"fullheight"}>
+      <Hero.Body>
+        <Container textAlign={"center"}>
+          <Heading>
+            <div>{state}</div>
+          </Heading>
+        </Container>
+      </Hero.Body>
+    </Hero>
   );
 }
 
