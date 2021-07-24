@@ -3,4 +3,7 @@ h1.title > div {
   background: -webkit-linear-gradient(rgb(233, 63, 182), rgb(255, 255, 255));
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  position: relative;
+  margin: auto;
+  width: 50%;
 }

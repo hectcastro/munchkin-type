@@ -2,47 +2,63 @@ import "bulma/css/bulma.min.css";
 import { useState } from "react";
 import { Container, Heading, Hero } from "react-bulma-components";
 import { useHotkeys } from "react-hotkeys-hook";
+import Sparkle from "react-sparkle";
 import "./App.css";
 
+const initialState = "< Type >";
 const resetKeys = ["Enter", "Escape"];
+const backspaceKeys = ["Backspace"];
 
 function isAlphaNumeric(key: string) {
   return key.match(/^[a-z0-9]$/i);
 }
 
 function App() {
-  const [state, setState] = useState("");
-  useHotkeys("*", (event: KeyboardEvent) =>
-    setState((prevState) => {
-      const newState = event.key;
+  const [state, setState] = useState(initialState);
 
-      if (resetKeys.includes(newState)) {
-        return "";
-      }
+  // Reset the state to the initial state.
+  useHotkeys(resetKeys.join(","), () => {
+    setState(() => initialState);
+  });
 
-      if (newState === "Backspace") {
-        return prevState.slice(0, -1);
-      }
+  // Under most conditions, delete the last character of state.
+  useHotkeys(backspaceKeys.join(","), () => {
+    setState((prevState: string) => {
+      if (prevState === initialState || prevState.length === 1)
+        return initialState;
 
+      return prevState.slice(0, -1);
+    });
+  });
+
+  // Add a new alphanumeric characters to the end of the state.
+  useHotkeys("*", (event: KeyboardEvent) => {
+    const newState = event.key;
+
+    setState((prevState: string) => {
       if (isAlphaNumeric(newState)) {
-        const totalState = prevState + newState;
-        if (totalState.length <= 10) {
-          return prevState + newState;
-        }
+        const combinedState = prevState + newState;
 
-        return totalState.substr(1);
+        if (prevState === initialState) return newState;
+
+        return combinedState.length <= 10
+          ? prevState + newState
+          : combinedState.substr(1);
       }
 
       return prevState;
-    })
-  );
+    });
+  });
 
   return (
     <Hero color={"dark"} size={"fullheight"}>
       <Hero.Body>
         <Container textAlign={"center"}>
           <Heading>
-            <div>{state}</div>
+            <div>
+              <Sparkle color={"white"} fadeOutSpeed={50} />
+              {state}
+            </div>
           </Heading>
         </Container>
       </Hero.Body>
