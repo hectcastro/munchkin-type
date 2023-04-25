@@ -16,7 +16,7 @@
     "react-hotkeys-hook": "^4.3.8",
     "react-scripts": "5.0.1",
     "react-sparkle": "github:hectcastro/react-sparkle#master",
-    "typescript": "^4.9.5",
+    "typescript": "^5.0.4",
     "web-vitals": "^3.3.1"
   },
   "scripts": {
