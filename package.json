@@ -8,7 +8,7 @@
     "@types/jest": "^29.5.5",
     "@types/node": "^20.8.4",
     "@types/react": "^18.2.23",
-    "@types/react-dom": "^18.2.8",
+    "@types/react-dom": "^18.2.12",
     "jest-canvas-mock": "^2.5.2",
     "react": "^18.2.0",
     "react-bulma-components": "^4.1.0",
