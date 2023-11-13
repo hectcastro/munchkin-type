@@ -35,7 +35,7 @@
     "jest-canvas-mock": "^2.5.2",
     "jest-environment-jsdom": "^29.7.0",
     "jest-resolve": "^29.7.0",
-    "jest-watch-typeahead": "^1.0.0",
+    "jest-watch-typeahead": "^2.2.2",
     "mini-css-extract-plugin": "^2.7.6",
     "postcss": "^8.4.4",
     "postcss-flexbugs-fixes": "^5.0.2",
